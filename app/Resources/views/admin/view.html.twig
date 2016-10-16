@@ -1,0 +1,35 @@
+
+{# app/Resources/views/jobseeker/view.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Admin Details
+{% endblock %}
+
+{% block links %}
+  <div class="btn-group" >
+    <a href="{{url('admin_update',{'id':admin.id})}}"> <button type="button" class="btn btn-xs btn-warning">Update Account
+      </button></a>
+  </div>
+{% endblock %}
+
+
+{% block body %}
+
+<table style="width:50%">
+  <tr>
+    <td><b>Name:</td>
+    <td>{{admin.name}}</td>
+  </tr>
+  <tr>
+    <td><b>Contact Number:</td>
+    <td>{{admin.contactNumber}}</td>
+  </tr>
+  <tr>
+    <td><b>Email Address:</td>
+    <td>{{admin.emailAddress}}</td>
+  </tr>
+   
+</table>
+
+{% endblock %}

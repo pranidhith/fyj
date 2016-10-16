@@ -1,0 +1,76 @@
+{# app/Resources/views/default/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    All Applications
+{% endblock %}
+
+
+{% block body %}
+
+    {% if appliedvacancies is empty  %}
+        <p>
+            No Applications Found
+        </p>
+
+    {% else %}
+
+    <table width="100%">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>CV</th>
+        </tr>
+
+        {% for av in appliedvacancies %}
+
+            <tr>
+                <td>
+                    <a href="{{url('jobSeeker_view',{'id':av.getJobSeekerAppliedVacancy().getId()})}}">{{ av.getJobSeekerAppliedVacancy().getName() }}</a>
+                </td>
+
+                <td>{{ av.Description|e }}
+                </td>
+
+                {#<td>{{ av.getAbsolutePath() }}
+                </td>#}
+
+                <td>
+                    <div class="btn-group" >
+
+                        <a href="{{ url('event_file', {'id':av.id}) }}"><button type="button" class="btn btn-xs btn-warning">View CV</button></a>
+
+                    </div>
+                </td>
+
+                <td>
+                    <div class="btn-group" >
+
+                        <a href="{{ url('jobRecruiter_recruit', {'id':av.id}) }}"><button type="button" class="btn btn-xs btn-success">Recruit</button></a>
+
+                    </div>
+                </td>
+
+                {% if is_granted('ROLE_ADMIN') %}
+                <td>
+                    <div class="btn-group" >
+
+                        <a href="{{ url('apply_delete', {'id':av.id}) }}"><button type="button" class="btn btn-xs btn-danger">Delete</button></a>
+
+                    </div>
+                </td>
+                {% endif %}
+
+
+            </tr>
+        {% endfor %}
+
+    </table>
+
+    {% endif  %}
+{% endblock %}
+
+
+
+
+

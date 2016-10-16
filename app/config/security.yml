@@ -1,0 +1,77 @@
+# app/config/security.yml
+security:
+    encoders:
+        AppBundle\Entity\JobSeeker:
+            algorithm: bcrypt
+
+        AppBundle\Entity\JobRecruiter:
+            algorithm: bcrypt
+
+        AppBundle\Entity\SystemAdmin:
+            algorithm: bcrypt
+    # ...
+
+    #providers:
+
+    providers:
+
+        chain_provider:
+            chain:
+                providers: [seeker, recruiter, admin]
+
+        seeker:
+            entity: { class: AppBundle\Entity\JobSeeker, property: username }
+
+        recruiter:
+            entity: { class: AppBundle\Entity\JobRecruiter, property: username }
+
+        admin:
+            entity: { class: AppBundle\Entity\SystemAdmin, property: username }
+
+
+        our_db_provider:
+            entity:
+                class: AppBundle:JobSeeker
+                property: username
+
+                class: AppBundle:JobRecruiter
+                property: username
+
+                class: AppBundle:SystemAdmin
+                property: username
+
+                 #if you're using multiple entity managers
+                 #manager_name: customer
+
+  
+
+
+    firewalls:
+        main:
+            anonymous: ~
+            pattern:    ^/
+            http_basic: ~
+            provider: chain_provider
+            form_login:
+                login_path: /login
+                check_path: /login_check
+            logout:
+                path:   /logout
+                invalidate_session: false
+
+    access_control:
+        # require ROLE_ADMIN for /admin*
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/recruiter/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/signup, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/home, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        #- { path: ^/, roles: ROLE_RECRUITER }
+        #- { path: ^/, roles: ROLE_SEEKER }
+      
+
+
+
+
+
+

@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Welcome to  SriLankan Railway!!
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="head">
+      <div class="container">
+        <h1>Online Application for managing the Railway System</h1>
+        <p>
+            Sri Lanka Railways ( SLR ) is a government department functioning under the Ministry of Transport. It is a major transport service provider and is the only rail transport organization in the country. SLR transports both passenger and freight. At its inception, railway was carrying more freight than passenger. But today, it is passenger oriented. SLR’s market share for passenger transport is about 6.0 % and about 0.7 % for goods transport.
+        </p>
+
+        <p>
+            In Sri Lanka, the service provided by SLR in carrying the daily commuters to their workplaces, is inevitable. Sri Lanka Railway operates approximately 396 trains which include 67 Long-Distance and 16 Intercity trains and carries about 3.72 Million passengers daily.
+        </P>
+
+        <p>
+            SLR owns and maintains 1561km of rail tracks, 72 locomotives,power sets 78, 565 carriages and the signalling network. At present, it has a workforce of 17,634.
+        </p>
+
+        <p>
+            Sri Lanka Railways ( SLR ) functions under the General Manager of Railways (GMR). The General Manager reports to the Secretary of the Ministry of Transport.
+        </p>
+
+        <p>
+            SLR has been divided into ten Sub Departments and three Units. Sub departments are managed by the Heads of the Sub Departments who reports directly to the General Manager of Railways.
+        </p>
+
+      </div>
+    </div> 
+
+    <div class="top-row">
+        <div class="container firstlayer left">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                    <li data-target="#myCarousel" data-slide-to="4"></li>
+                </ol>
+            
+                <div class="carousel-inner">
+              
+                    <div class="item active">
+                        <img src="{{ asset('img/1.jpg') }}" alt="findYourJob" class="img-responsive" height="300" width="1900">
+                    </div>
+              
+                    <div class="item">
+                        <img src="{{ asset('img/2.jpg') }}" alt="Codos" class="img-responsive" height="100" width="1900">
+                    </div>
+                      
+                    <div class="item">
+                        <img src="{{ asset('img/3.jpg') }}" alt="Codos" class="img-responsive" height="300" width="1900" >
+                    </div>  
+
+                    <div class="item">
+                        <img src="{{ asset('img/4.jpg') }}" alt="Codos" class="img-responsive" height="300" width="1900" >
+                    </div> 
+                    
+                    <div class="item">
+                        <img src="{{ asset('img/5.jpg') }}" alt="Codos" class="img-responsive" height="300" width="1900" >
+                    </div> 
+                </div>
+
+                <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+                    <span class="icon-prev"></span>
+                </a>
+                <a class="carousel-control right" href="#myCarousel" data-slide="next">
+                    <span class="icon-next"></span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="learn-more">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h3>70th Anniversary Ceremony of the Railway Security Service</h3>
+            <p>The 70th anniversary ceremony was held on 23rd of September 2016 at the Railway Auditorium with the honorable participation of Mr. B.A.P. Ariyarathne, General Manager in Railways, Mr. Athulasena, Coordinating Secretary of the Minister of Transport (Railway Trade Unions),</p>
+            <p><a href="{{ path('advertisement_create') }}">Read More ...</a></p>
+          </div>
+          <div class="col-md-4">
+            <h3>The special workshop for training Railway Announced</h3>
+            <p>"The special trilingual speech workshop for training Railway announcers was held from 15.09.2016 to 18.09.2016 at the auditorium of the official Languages commission premises under the sponsorship of the Official Languages commission on the instructions </p>
+            <p><a href="{{ path('vacancy_viewAll') }}">Read More ...</a></p>
+          </div>
+          <div class="col-md-4">
+            <h3>National Railway Museum declared open in Kadugannawa</h3>
+            <p>Sri Lanka Railways Declared to open National Railway Museum at Kadugannawa on 27th December 2014 to commemorate the 150th Anniversary of the first train run.</p>
+            <p><a href="{{ path('jobSeeker_create') }}">Read more ...</a></p>
+          </div>
+      </div>
+    </div>
+
+
+{% endblock %}
+

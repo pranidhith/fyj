@@ -1,0 +1,31 @@
+
+{# app/Resources/views/jobseeker/view.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Applied Vacancy Details
+{% endblock %}
+
+
+{% block body %}
+
+<table style="width:50%">
+  <tr>
+    <td><b>Description:</b></td>
+    <td>{{appliedvacancy.description}}</td>
+  </tr>
+  <tr>
+    <td><b>Seeker:</b></td>
+    <td>{{appliedvacancy.getJobSeekerAppliedVacancy().getName()}}</td>
+  </tr>
+  <tr>
+    <td><b>Vacancy Position:</b></td>
+    <td>{{appliedvacancy.getJobSeekerVacancy().getPosition()}}</td>
+  </tr>
+  <tr>
+    <td><b>Vacancy Company:</b></td>
+    <td>{{appliedvacancy.getJobSeekerVacancy().getPostedVacancy().getCompanyName()}}</td>
+  </tr>
+</table>
+
+{% endblock %}

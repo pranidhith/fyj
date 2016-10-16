@@ -1,0 +1,76 @@
+{# app/Resources/views/default/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+All Vacancies
+{% endblock %}
+
+{% block body %}
+
+<table width="100%">
+	<tr>
+        <th>ID</th>
+		<th>Place</th>
+        <th>Position</th>
+		<th>Salary Given</th>
+        <th>Closing Date</th>
+        <th>Recruiter</th>
+        <th>Interested Field</th>
+    </tr>
+
+    {% for jr in vacancies %}
+        <tr>
+        <td>
+        <a href="{{url('vacancy_view',{'id':jr.id})}}">{{ jr.id|e }}</a>
+        </td>
+
+		<td>{{ jr.place|e }}
+        </td>
+
+        <td>{{ jr.position|e }}
+        </td>
+
+        <td>{{ jr.salaryGiven|e }}
+        </td>
+
+        <td>{{ jr.closingDate|date('Y-m-d') }}
+        </td>
+
+        <td><a href="{{url('jobRecruiter_view',{'id':jr.getPostedVacancy().getId()})}}">{{ jr.getPostedVacancy().getCompanyName()|e }}
+            </a></td>
+
+
+        <td>{{jr.getVacancyField().getName()}}</td>
+
+
+        <td>
+            <div class="btn-group" >
+
+                <a href="{{ url('apply_vacancy', {'id':jr.id}) }}"><button type="button" class="btn btn-xs btn-success">Apply</button></a>
+
+            </div>
+        </td>
+
+        {% if is_granted('ROLE_ADMIN') %}
+        <td>
+            <div class="btn-group" >
+
+                <a href="{{ url('vacancy_delete', {'id':jr.id}) }}"><button type="button" class="btn btn-xs btn-danger">Delete</button></a>
+
+            </div>
+        </td>
+
+        {% endif %}
+
+        </tr>
+    {% endfor %}
+
+   
+</table>
+
+{% endblock %}
+
+
+
+
+

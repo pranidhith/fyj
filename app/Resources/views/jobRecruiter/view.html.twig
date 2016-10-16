@@ -1,0 +1,60 @@
+
+{# app/Resources/views/jobseeker/view.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Job Recruiter Details
+{% endblock %}
+
+{% block links %}
+  {% if is_granted('ROLE_RECRUITER') %}
+  <div class="btn-group" >
+    <a href="{{url('jobRecruiter_update',{'id':jobRecruiter.id})}}"> <button type="button" class="btn btn-xs btn-warning">Update Account
+      </button></a>
+  </div>
+{% endif %}
+{% endblock %}
+
+
+{% block body %}
+
+<table style="width:50%">
+  <tr>
+    <td><b>Name:</td>
+    <td>{{jobRecruiter.name}}</td>
+  </tr>
+  <tr>
+    <td><b>Company Name:</td>
+    <td>{{jobRecruiter.companyName}}</td>
+  </tr>
+  <tr>
+    <td><b>Contact Number:</td>
+    <td>{{jobRecruiter.contactNo}}</td>
+  </tr>
+  <tr>
+    <td><b>Email Address:</td>
+    <td>{{jobRecruiter.emailAddress}}</td>
+  </tr>
+  <tr>
+    <td><b>Account Created Date:</td>
+    <td>{{jobRecruiter.accCreatedDate|date('Y-m-d')}}</td>
+  </tr>
+  <tr>
+    <td><b>Linked In URL:</td>
+    <td>{{jobRecruiter.linkedInURL}}</td>
+  </tr>
+
+  <tr>
+    <td><b>LinkedIN profile:</td>
+    <td>
+      <div class="btn-group" >
+
+        <a href="{{ url('jobRecruiter_linkedin', {'id':jobRecruiter.id}) }}"><button type="button" class="btn btn-xs btn-primary">View LinkedIN Profile</button></a>
+
+      </div>
+    </td>
+  </tr>
+   
+</table>
+
+{% endblock %}

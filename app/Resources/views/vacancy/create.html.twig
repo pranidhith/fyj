@@ -1,0 +1,21 @@
+{# app/Resources/views/default/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Create Vacancy
+{% endblock %}
+
+{% block links %}
+    <div class="btn-group" >
+
+        <a href="{{ url('field_create') }}"><button type="button" class="btn btn-xs btn-succcess">Add a new Field</button></a>
+
+    </div>
+{% endblock %}
+
+{% block body %}
+{{ form_start(form) }}
+
+{{ form_widget(form) }}
+{{ form_end(form) }}    
+{% endblock %}

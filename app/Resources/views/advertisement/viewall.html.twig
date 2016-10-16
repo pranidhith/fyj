@@ -1,0 +1,78 @@
+{# app/Resources/views/default/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    All Advertisements
+{% endblock %}
+
+
+{% block body %}
+
+    {% if advertisements is empty  %}
+    <p>
+        No Products Found
+    </p>
+
+    {% else %}
+
+    <table width="100%">
+        <tr>
+            <th>Advertisement ID</th>
+            <th>Size X</th>
+            <th>Size Y</th>
+            <th>Days to Display</th>
+            <th>Company Name</th>
+            <th>Image</th>
+        </tr>
+
+        {% for ad in advertisements %}
+            <tr>
+                <td>
+                    <a href="{{url('advertisement_view',{'id':ad.id})}}">{{ ad.id }}</a>
+                </td>
+
+                <td>{{ ad.sizeX|e }}
+                </td>
+
+                <td>{{ ad.sizeY|e }}
+                </td>
+
+                <td>{{ ad.daysToDisplay|e }}
+                </td>
+
+                <td>{{ad.getSubmittedAd().getCompanyName()}}
+                </td>
+
+                <td>
+                    <div class="btn-group" >
+
+                        <a href="{{ url('advertisement_file', {'id':ad.id}) }}"><button type="button" class="btn btn-xs btn-warning">View Image</button></a>
+
+                    </div>
+                </td>
+
+                {% if is_granted('ROLE_ADMIN') %}
+                <td>
+                    <div class="btn-group" >
+
+                        <a href="{{ url('advertisement_delete', {'id':ad.id}) }}"><button type="button" class="btn btn-xs btn-danger">Delete</button></a>
+
+                    </div>
+                </td>
+
+                {% endif %}
+
+            </tr>
+        {% endfor %}
+
+
+    </table>
+
+    {% endif %}
+
+{% endblock %}
+
+
+
+
+

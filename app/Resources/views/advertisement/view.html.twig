@@ -1,0 +1,46 @@
+
+{# app/Resources/views/jobseeker/view.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Advertisement Details
+{% endblock %}
+
+
+{% block body %}
+
+    <table style="width:50%">
+        <tr>
+            <td><b>ID:</td>
+            <td>{{advertisement.id}}</td>
+        </tr>
+        <tr>
+            <td><b>Size X:</td>
+            <td>{{advertisement.sizeX}}</td>
+        </tr>
+        <tr>
+            <td><b>Size Y:</td>
+            <td>{{advertisement.sizeY}}</td>
+        </tr>
+        <tr>
+            <td><b>Days to Display:</td>
+            <td>{{advertisement.daysToDisplay}}</td>
+        </tr>
+        <tr>
+            <td><b>Company:</td>
+            <td>{{advertisement.getSubmittedAd().getCompanyName()}}</td>
+        </tr>
+        <tr>
+            <td><b>Advertisement:</td>
+            <td>
+                <div class="btn-group" >
+
+                    <a href="{{ url('advertisement_file', {'id':advertisement.id}) }}"><button type="button" class="btn btn-xs btn-success">View Image</button></a>
+
+                </div>
+
+            </td>
+        </tr>
+    </table>
+
+{% endblock %}

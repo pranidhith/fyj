@@ -1,0 +1,35 @@
+
+{# app/Resources/views/jobseeker/view.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Field Details
+{% endblock %}
+
+{% block links %}
+
+  {% if is_granted('ROLE_ADMIN') %}
+  <div class="btn-group" >
+    <a href="{{url('field_update',{'id':field.id})}}"> <button type="button" class="btn btn-xs btn-warning">Update Field
+      </button></a>
+  </div>
+  {% endif %}
+
+{% endblock %}
+
+
+{% block body %}
+
+<table style="width:50%">
+  <tr>
+    <td><b>Name:</td>
+    <td>{{field.name}}</td>
+  </tr>
+  <tr>
+    <td><b>Description:</td>
+    <td>{{field.description}}</td>
+  </tr>
+
+</table>
+
+{% endblock %}

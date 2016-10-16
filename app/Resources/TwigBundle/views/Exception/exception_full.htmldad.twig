@@ -1,0 +1,27 @@
+{# app/Resources/TwigBundle/views/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Action Failed
+{% endblock %}
+
+{% block body %}
+    <h1>Cannot Proceed</h1>
+
+    {# example security usage, see below #}
+    {% if is_granted('ROLE_ADMIN') == false %}
+
+        <p>
+            Your account is not given authorization to access this path. Checkout for any URL
+            misspelling or <a href="{{ path('homepage') }}">return to the homepage</a>.
+        </p>
+
+    {% else %}
+
+        <p>
+            Cannot Delete the account since it contains other data connected to the system.
+            <a href="{{ path('homepage') }}">return to the homepage</a>.
+        </p>
+
+    {% endif %}
+{% endblock %}

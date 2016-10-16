@@ -1,0 +1,24 @@
+_wdt:
+    resource: "@WebProfilerBundle/Resources/config/routing/wdt.xml"
+    prefix:   /_wdt
+
+_profiler:
+    resource: "@WebProfilerBundle/Resources/config/routing/profiler.xml"
+    prefix:   /_profiler
+
+_errors:
+    resource: "@TwigBundle/Resources/config/routing/errors.xml"
+    prefix:   /_error
+
+_main:
+    resource: routing.yml
+
+
+
+# _seeker_login_check:
+#     	path: /login_check
+#     	#defaults:  { _controller: AppBundle:Security:login }
+
+# _recruiter_login_check:
+#    		path: /recruiter/login_check
+#    		#defaults:  { _controller: AppBundle:Security:login }

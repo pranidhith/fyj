@@ -1,0 +1,75 @@
+{# app/Resources/views/default/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    All Vacancies
+{% endblock %}
+
+
+{% block body %}
+
+    {% if newsfeeds is empty  %}
+    <p>
+        No vacancies found for your preferences
+    </p>
+
+    {% else %}
+
+    <table width="100%">
+        <tr>
+            <th>ID</th>
+            <th>Place</th>
+            <th>Position</th>
+            <th>Salary Given</th>
+            <th>Closing Date</th>
+            <th>Recruiter</th>
+            <th>Interested Field</th>
+        </tr>
+
+        {% for jr in newsfeeds %}
+            <tr>
+                <td>
+                    <a href="{{url('vacancy_view',{'id':jr.id})}}">{{ jr.id|e }}</a>
+                </td>
+
+                <td>{{ jr.place|e }}
+                </td>
+
+                <td>{{ jr.position|e }}
+                </td>
+
+                <td>{{ jr.salaryGiven|e }}
+                </td>
+
+                <td>{{ jr.closingDate|date('Y-m-d') }}
+                </td>
+
+                <td><a href="{{url('jobRecruiter_view',{'id':jr.getPostedVacancy().getId()})}}">{{ jr.getPostedVacancy().getCompanyName()|e }}
+                </td>
+
+
+                <td>{{jr.getVacancyField().getName()}}</td>
+
+
+                <td>
+                    <div class="btn-group" >
+
+                        <a href="{{ url('apply_vacancy', {'id':jr.id}) }}"><button type="button" class="btn btn-xs btn-success">Apply</button></a>
+
+                    </div>
+                </td>
+
+            </tr>
+        {% endfor %}
+
+
+    </table>
+
+    {% endif %}
+
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('img/jobs.png') }}" />
+
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/navbar.css') }}" />
+
+        {#Chosen#}
+
+
+        {#Custom Style#}
+        <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
+
+        
+        {% endblock %}
+    </head>
+
+    <body>
+        
+        
+        <!-- Navbar -->
+        
+
+        <nav class = "navbar navbar-default" role="navigation">
+
+            
+            <a class="navbar-brand" href="{{url('homepage')}}">Sri Lanka Railway</a>
+            
+            <div class = "container-fluid">
+
+                <!-- Seeker Role -->
+
+                {% if is_granted('ROLE_SEEKER') %}
+                <div class="navbar-header">
+                    <ul class="nav navbar-nav">
+                        <!--dropdown menu-->
+
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+                          <ul class="dropdown-menu dropdown-menu-right">
+                              <li><a href="{{url('seekerAccount_home')}}"><span class="glyphicon glyphicon-lock"></span> Account</a></li>
+
+                            <li role="separator" class="divider"></li>
+                              <li><a href='{{url('logout')}}'><span class="glyphicon glyphicon-off"></span> Logout ( {{ app.user.username }} )</a></li>
+                              <li><a href='{{url('aboutUs')}}'><span class="glyphicon glyphicon-education"></span> About Us</a></li>
+
+                          </ul>
+                        </li>
+
+                        <li><a href='{{url('newsSeeker_home')}}'><span class="glyphicon glyphicon-globe"></span> Newsfeed</a></li>
+                        <li><a href='{{url('vacancy_viewAll')}}'><span class="glyphicon glyphicon-th-list"></span> All Vacancies</a></li>
+
+                 </ul>
+                </div>
+
+                <!-- Recruiter Role -->
+
+                {% elseif is_granted('ROLE_RECRUITER') %}
+                <div class="navbar-header">
+                    <ul class="nav navbar-nav">
+                        <!--dropdown menu-->
+
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="{{url('companyAccount_home')}}"><span class="glyphicon glyphicon-lock"></span> Account</a></li>
+                              <li><a href="{{url('vacancy_home')}}"><span class="glyphicon glyphicon-pencil"></span> Create a vacancy</a></li>
+                              <li><a href="{{url('advertisement_create')}}"><span class="glyphicon glyphicon-piggy-bank"></span> Submit an advertisement</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href='{{url('logout')}}'><span class="glyphicon glyphicon-off"></span> Logout ( {{ app.user.username }} )</a></li>
+                            <li><a href='{{url('aboutUs')}}'><span class="glyphicon glyphicon-education"></span> About Us</a></li>
+                          </ul>
+                        </li>
+
+                        <li><a href='{{url('newsRecruiter_home')}}'><span class="glyphicon glyphicon-globe"></span> Newsfeed</a></li>
+                        <li><a href='{{url('vacancy_viewCompany')}}'><span class="glyphicon glyphicon-th-list"></span> All Vacancies</a></li>
+
+                    </ul>
+                </div>
+
+                    <!-- Admin Role -->
+
+                {% elseif is_granted('ROLE_ADMIN') %}
+                    <div class="navbar-header">
+                        <ul class="nav navbar-nav">
+                            <!--dropdown menu-->
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="{{url('admin_view')}}"><span class="glyphicon glyphicon-lock"></span> Account</a></li>
+
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href='{{url('logout')}}'><span class="glyphicon glyphicon-off"></span> Logout ( {{ app.user.username }} )</a></li>
+                                    <li><a href='{{url('aboutUs')}}'><span class="glyphicon glyphicon-education"></span> About Us</a></li>
+
+                                </ul>
+                            </li>
+
+                            <li><a href="{{url('admin_viewSeekers')}}"><span class="glyphicon glyphicon-flag"></span> View All Job Seekers</a></li>
+                            <li><a href="{{url('admin_viewRecruiters')}}"><span class="glyphicon glyphicon-sunglasses"></span></span> View All Job Recruiters</a></li>
+                            <li><a href="{{url('admin_viewAdvertisements')}}"><span class="glyphicon glyphicon-eye-open"></span> View All Advertisements</a></li>
+                            <li><a href="{{url('admin_viewVacancies')}}"><span class="glyphicon glyphicon-user"></span> View All Vacancies</a></li>
+                            <li><a href="{{url('admin_viewApplications')}}"><span class="glyphicon glyphicon-envelope"></span> View All Applications</a></li>
+                            <li><a href="{{url('admin_viewFields')}}"><span class="glyphicon glyphicon-send"></span> View All Fields</a></li>
+
+                        </ul>
+                    </div>
+               
+
+                {% else %}
+                <div class="navbar-header">
+                    <ul class="nav navbar-nav">
+                       
+                            <li><a href='{{url('homepage_guest')}}'><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                            <li><a href='{{url('login_route')}}'><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+                            <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span> Sign In</a>
+                              <ul class="dropdown-menu dropdown-menu-right">
+                                 <li><a href='{{url('signup_seeker')}}'><span class="glyphicon glyphicon-user"></span> SignUp Seeker</a></li>
+                                  <li><a href='{{url('signup_recruiter')}}'><span class="glyphicon glyphicon-briefcase"> </span> SignUp Recruiter</a></li>
+                              </ul>
+                            </li>
+
+                            <li><a href='{{url('aboutUs')}}'><span class="glyphicon glyphicon-education"></span> About Us</a></li>
+                        
+                    </ul>
+                </div>
+                {% endif %}
+                
+
+          </div>
+
+         
+
+            
+
+        </nav>
+
+        <!-- Content -->
+        <div class="panel panel-default">
+            <div class="panel-heading">{{ block('title')}}
+                <div class="pull-right">{% block links %}{% endblock %}</div>
+            </div>
+            <div class="panel-body">
+
+                <div class='error_message'> {{ form_error | default("") }} </div>
+                {% block body %}
+
+                {% endblock %}
+
+                {% block javascripts %}
+
+                <script src="{{ asset('js/jquery-1.12.2.min.js')}}"></script>
+                <script src="{{ asset('js/bootstrap.min.js')}}"></script>
+                <script src="{{ asset('js/chosen.jquery.min.js') }}"></script>
+
+                {% endblock %}
+            </div>
+        </div>
+    </body>
+</html>

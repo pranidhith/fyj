@@ -1,0 +1,73 @@
+{# app/Resources/views/default/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+All Job Recruiters
+{% endblock %}
+
+
+{% block body %}
+
+<table width="100%">
+	<tr>
+		<th>Name</th>
+		<th>Company Name</th>
+        <th>Company Address</th>
+        <th>Contact Number</th>
+        <th>Email Address</th>
+        <th>Account Created Date</th>
+        <th>LinkedIn Profile</th>
+        
+    </tr>
+
+    {% for jr in jobRecruiters %}
+        <tr>
+        <td>
+        <a href="{{url('jobRecruiter_view',{'id':jr.id})}}">{{ jr.name|e }}</a>
+        </td>
+
+		<td>{{ jr.companyName|e }}
+        </td>
+
+        <td>{{ jr.companyAddress|e }}
+        </td>
+
+        <td>{{ jr.contactNo|e }}
+        </td>
+
+        <td>{{ jr.emailAddress|e }}
+        </td>
+
+        <td>{{ jr.accCreatedDate|date('Y-m-d') }}
+        </td>
+
+        <td>
+            <div class="btn-group" >
+
+                <a href="{{ url('jobRecruiter_linkedin', {'id':jr.id}) }}"><button type="button" class="btn btn-xs btn-primary">View LinkedIN Profile</button></a>
+
+            </div>
+        </td>
+
+        {% if is_granted('ROLE_ADMIN') %}
+        <td>
+            <div class="btn-group" >
+
+                <a href="{{ url('jobrecruiter_delete', {'id':jr.id}) }}"><button type="button" class="btn btn-xs btn-danger">Delete</button></a>
+
+            </div>
+        </td>
+
+        {% endif %}
+        </tr>
+    {% endfor %}
+
+   
+</table>
+
+{% endblock %}
+
+
+
+
+

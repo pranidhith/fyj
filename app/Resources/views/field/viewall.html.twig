@@ -1,0 +1,55 @@
+{# app/Resources/views/default/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+All Fields
+{% endblock %}
+
+{% block links %}
+    <div class="btn-group" >
+
+        <a href="{{ url('field_create') }}"><button type="button" class="btn btn-xs btn-succcess">Add a new Field</button></a>
+
+    </div>
+{% endblock %}
+
+
+{% block body %}
+
+<table width="100%">
+	<tr>
+		<th>Name</th>
+		<th>Description</th>
+    </tr>
+
+    {% for f in fields %}
+        <tr>
+        <td>
+        <a href="{{url('field_view',{'id':f.id})}}">{{ f.name|e }}</a>
+        </td>
+
+		<td>{{ f.Description|e }}
+        </td>
+
+        {% if is_granted('ROLE_ADMIN') %}
+        <td>
+            <div class="btn-group" >
+
+                <a href="{{ url('field_delete', {'id':f.id}) }}"><button type="button" class="btn btn-xs btn-danger">Delete</button></a>
+
+            </div>
+        </td>
+
+        {% endif %}
+        </tr>
+    {% endfor %}
+
+   
+</table>
+
+{% endblock %}
+
+
+
+
+

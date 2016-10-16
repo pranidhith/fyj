@@ -1,0 +1,58 @@
+{# app/Resources/views/default/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    All Applications
+{% endblock %}
+
+
+{% block body %}
+
+    <table width="100%">
+        <tr>
+            <th>Vacancy</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>CV</th>
+        </tr>
+
+        {% for av in newsfeeds %}
+            <tr>
+
+                <td>
+                    <a href="{{url('vacancy_view',{'id':av.getJobSeekerVacancy.getId()})}}">{{ av.getJobSeekerVacancy().getPosition() }}</a>
+                </td>
+
+                <td>
+                    <a href="{{url('jobSeeker_view',{'id':av.getJobSeekerAppliedVacancy().getId()})}}">{{ av.getJobSeekerAppliedVacancy().getName() }}</a>
+                </td>
+
+                <td>{{ av.Description|e }}
+                </td>
+
+                {#<td>{{ av.getAbsolutePath() }}
+                </td>#}
+
+                <td>
+                    <div class="btn-group" >
+
+                        <a href="{{ url('event_file', {'id':av.id}) }}"><button type="button" class="btn btn-xs btn-warning">View CV</button></a>
+
+                    </div>
+                </td>
+
+                <td>
+                    <div class="btn-group" >
+
+                        <a href="{{ url('jobRecruiter_recruit', {'id':av.id}) }}"><button type="button" class="btn btn-xs btn-success">Recruit</button></a>
+
+                    </div>
+                </td>
+
+            </tr>
+        {% endfor %}
+
+
+    </table>
+
+{% endblock %}

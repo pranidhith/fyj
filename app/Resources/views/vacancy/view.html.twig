@@ -1,0 +1,46 @@
+
+{# app/Resources/views/vacancy/view.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Vacancy Details
+{% endblock %}
+
+{% block links %}
+  <div class="btn-group" >
+    <a href="{{url('vacancy_update',{'id':vacancy.id})}}"> <button type="button" class="btn btn-xs btn-warning">Update Vacancy Details
+    </button></a>
+  </div>
+{% endblock %}
+
+{% block body %}
+
+<table style="width:50%">
+  <tr>
+    <td><b>Place:</td>
+    <td>{{vacancy.place}}</td>
+  </tr>
+  <tr>
+    <td><b>Positon:</td>
+    <td>{{vacancy.position}}</td>
+  </tr>
+  <tr>
+    <td><b>Salary Given:</td>
+    <td>{{vacancy.salaryGiven}}</td>
+  </tr>
+  <tr>
+    <td><b>Closing Date:</td>
+    <td>{{vacancy.closingDate|date('Y-m-d')}}</td>
+  </tr>
+  <tr>
+    <td><b>Recruiter:</td>
+    <td><a href="{{url('jobRecruiter_view',{'id':vacancy.getPostedVacancy().getId()})}}">{{ vacancy.getPostedVacancy().getCompanyName()|e }}</td>
+  </tr>
+  <tr>
+    <td><b>Interested Field:</td>
+    <td>{{vacancy.getVacancyField().getName()}}</td>  </tr>
+  <tr>
+   
+</table>
+
+{% endblock %}
